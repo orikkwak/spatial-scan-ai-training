@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Dataset raw files
+datasets/raw/
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Processed/generated datasets
+datasets/processed/
+datasets/unified/
+
+# Model checkpoints / weights
+checkpoints/
+exports/
+*.pt
+*.pth
+*.onnx
+*.engine
+*.ckpt
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+temp/
+tmp/
