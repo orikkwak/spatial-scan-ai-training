@@ -45,3 +45,9 @@ Thumbs.db
 # Temp
 temp/
 tmp/
+
+# Local AI harness / Codex instructions
+.harness/
+harness/
+*.harness.md
+CODEX_LOCAL.md
