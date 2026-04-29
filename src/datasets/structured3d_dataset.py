@@ -17,6 +17,7 @@ class Structured3DSegmentationDataset(Dataset):
         self.index_path = Path(index_path)
         self.image_size = image_size  # (width, height)
         self.num_classes = num_classes
+        self.color_to_class = {}
 
         if not self.index_path.exists():
             raise FileNotFoundError(f"Index file not found: {self.index_path}")
@@ -35,6 +36,8 @@ class Structured3DSegmentationDataset(Dataset):
         if not self.items:
             raise ValueError(f"Dataset index is empty: {self.index_path}")
 
+        self._build_global_color_mapping()
+
     def __len__(self):
         return len(self.items)
 
@@ -51,7 +54,6 @@ class Structured3DSegmentationDataset(Dataset):
 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-        # cv2.resize size order = (width, height)
         image = cv2.resize(
             image,
             self.image_size,
@@ -59,11 +61,33 @@ class Structured3DSegmentationDataset(Dataset):
         )
 
         image = image.astype(np.float32) / 255.0
-
-        # HWC -> CHW
         image = np.transpose(image, (2, 0, 1))
 
         return torch.from_numpy(image).float()
+
+    def _encode_color_mask(self, mask: np.ndarray) -> np.ndarray:
+        b = mask[:, :, 0].astype(np.int64)
+        g = mask[:, :, 1].astype(np.int64)
+        r = mask[:, :, 2].astype(np.int64)
+        return r * 256 * 256 + g * 256 + b
+
+    def _build_global_color_mapping(self):
+        values = set()
+
+        for item in self.items:
+            mask = cv2.imread(item["mask_path"], cv2.IMREAD_UNCHANGED)
+
+            if mask is None or len(mask.shape) == 2:
+                continue
+
+            values.update(np.unique(self._encode_color_mask(mask)).tolist())
+
+        for value in sorted(values):
+            if value == 0:
+                self.color_to_class[value] = 0
+            else:
+                class_id = 1 + ((len(self.color_to_class) - 1) % (self.num_classes - 1))
+                self.color_to_class[value] = class_id
 
     def _load_mask(self, path: str) -> torch.Tensor:
         mask_path = Path(path)
@@ -82,30 +106,13 @@ class Structured3DSegmentationDataset(Dataset):
             interpolation=cv2.INTER_NEAREST,
         )
 
-        # case 1: semantic.png가 이미 class id 형태인 경우
         if len(mask.shape) == 2:
             mask = mask.astype(np.int64)
-
-        # case 2: semantic.png가 BGR/RGB color mask 형태인 경우
         else:
-            # OpenCV는 BGR로 읽음
-            b = mask[:, :, 0].astype(np.int64)
-            g = mask[:, :, 1].astype(np.int64)
-            r = mask[:, :, 2].astype(np.int64)
-
-            encoded = r * 256 * 256 + g * 256 + b
-            unique_values = np.unique(encoded)
-
-            # 임시 매핑:
-            # 색상값을 class id로 바꿈.
-            # 나중에 정확한 Structured3D semantic color table 기준으로 교체해야 함.
-            value_to_class = {
-                value: idx % self.num_classes for idx, value in enumerate(unique_values)
-            }
-
+            encoded = self._encode_color_mask(mask)
             class_mask = np.zeros_like(encoded, dtype=np.int64)
 
-            for value, class_id in value_to_class.items():
+            for value, class_id in self.color_to_class.items():
                 class_mask[encoded == value] = class_id
 
             mask = class_mask

@@ -1,0 +1,10 @@
+{
+  "current_phase": "training_complete",
+  "current_zip": "Structured3D_panorama_00.zip",
+  "valid_pairs": 3339,
+  "skipped": 6,
+  "cuda": true,
+  "last_checkpoint": "checkpoints/structured3d/last.pt",
+  "retry": 0,
+  "last_error": null
+}

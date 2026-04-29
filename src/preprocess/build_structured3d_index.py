@@ -52,10 +52,18 @@ def find_pairs():
             skipped += 1
             continue
 
+        scene_id = next(
+            (part for part in rgb_path.parts if part.startswith("scene_")),
+            "unknown",
+        )
+        variant = folder.name
+
         pairs.append(
             {
                 "image_path": str(rgb_path),
                 "mask_path": str(mask_path),
+                "scene_id": scene_id,
+                "variant": variant,
                 "source": "structured3d",
             }
         )
