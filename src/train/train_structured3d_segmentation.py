@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import random
 
 import torch
@@ -17,7 +18,7 @@ METRICS_REPORT = PROJECT_ROOT / "reports" / "training_metrics_report.md"
 IMAGE_SIZE = (512, 256)
 NUM_CLASSES = 8
 BATCH_SIZE = 2
-EPOCHS = 10
+EPOCHS = int(os.environ.get("SPATIAL_TRAIN_EPOCHS", "10"))
 LEARNING_RATE = 1e-4
 NUM_WORKERS = 0
 
