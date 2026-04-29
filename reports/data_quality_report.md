@@ -1,10 +1,10 @@
 # Data Quality Report
 
-- archive name: Structured3D_panorama_03.zip
+- archive name: Structured3D_panorama_04.zip
 - extraction status: partial extraction completed with usable files
-- archive errors: 12 allowed 7-Zip subitem errors
-- affected scenes: scene_00609, scene_00612, scene_00613
-- total candidates: 14850
-- valid pairs: 14832
-- skipped unreadable samples: 18
+- archive errors: 21 allowed 7-Zip subitem errors
+- affected scenes: scene_00806, scene_00809, scene_00810
+- total candidates: 18360
+- valid pairs: 18338
+- skipped unreadable samples: 22
 - annotation archive: present and previously validated
