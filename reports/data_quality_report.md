@@ -1,8 +1,10 @@
 # Data Quality Report
 
-- dataset: Structured3D panorama 00
-- total candidates: 3345
-- valid readable pairs: 3339
-- skipped unreadable samples: 6
-- archive errors: 36 partial panorama archive errors previously detected
-- annotation archive: valid
+- archive name: Structured3D_panorama_01.zip
+- extraction status: partial extraction completed with usable files
+- archive errors: 43 allowed 7-Zip subitem errors
+- affected scenes: scene_00206, scene_00211, scene_00212, scene_00213
+- total candidates: 7185
+- valid pairs: 7173
+- skipped unreadable samples: 12
+- annotation archive: present and previously validated

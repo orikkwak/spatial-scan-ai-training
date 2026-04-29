@@ -57,14 +57,22 @@ def find_pairs():
             "unknown",
         )
         variant = folder.name
+        mode = folder.parent.name
+        rendering_id = folder.parent.parent.name
+        height, width = image.shape[:2]
 
         pairs.append(
             {
+                "id": f"structured3d_{scene_id}_{rendering_id}_{variant}",
                 "image_path": str(rgb_path),
                 "mask_path": str(mask_path),
                 "scene_id": scene_id,
                 "variant": variant,
                 "source": "structured3d",
+                "mode": mode,
+                "rendering_id": rendering_id,
+                "width": width,
+                "height": height,
             }
         )
 
