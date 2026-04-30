@@ -1,10 +1,7 @@
 # Training Metrics Report
 
-- archive name: Structured3D_panorama_05.zip
-- final epoch: 34
-- train loss: 0.1488
-- validation loss: 0.1553
-- pixel accuracy: 0.9494
-- mIoU: 0.7293
-- best checkpoint: checkpoints/structured3d/best.pt
-- last checkpoint: checkpoints/structured3d/last.pt
+- epoch: 35
+- train_loss: 0.1396
+- val_loss: 0.1534
+- pixel_accuracy: 0.9509
+- mIoU: 0.7221
