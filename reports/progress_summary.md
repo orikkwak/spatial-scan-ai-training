@@ -2,10 +2,10 @@
 
 - current status: training complete
 - current group: panorama
-- last completed zip: Structured3D_panorama_08.zip
-- next zip: Structured3D_panorama_09.zip
-- total processed count: 9
-- valid pairs: 32451
-- skipped samples: 39
-- last metrics: train_loss=0.1248, val_loss=0.1503, pixel_accuracy=0.9462, mIoU=0.7261
-- next action: download or verify Structured3D_panorama_09.zip
+- last completed zip: Structured3D_panorama_09.zip
+- next zip: Structured3D_panorama_10.zip
+- total processed count: 10
+- valid pairs: 35789
+- skipped samples: 43
+- last metrics: train_loss=0.1183, val_loss=0.1310, pixel_accuracy=0.9570, mIoU=0.7418
+- next action: download or verify Structured3D_panorama_10.zip

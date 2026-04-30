@@ -1,7 +1,7 @@
 # Training Metrics Report
 
-- epoch: 37
-- train_loss: 0.1248
-- val_loss: 0.1503
-- pixel_accuracy: 0.9462
-- mIoU: 0.7261
+- epoch: 38
+- train_loss: 0.1183
+- val_loss: 0.1310
+- pixel_accuracy: 0.9570
+- mIoU: 0.7418
