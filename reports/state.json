@@ -1,14 +1,14 @@
 {
   "dataset": "Structured3D",
   "current_group": "panorama",
-  "current_index": 7,
-  "current_zip": "Structured3D_panorama_07.zip",
+  "current_index": 8,
+  "current_zip": "Structured3D_panorama_08.zip",
   "current_phase": "training_complete",
   "phase": "completed",
-  "last_completed_zip": "Structured3D_panorama_07.zip",
-  "next_zip": "Structured3D_panorama_08.zip",
-  "valid_pairs": 29031,
-  "skipped": 33,
+  "last_completed_zip": "Structured3D_panorama_08.zip",
+  "next_zip": "Structured3D_panorama_09.zip",
+  "valid_pairs": 32451,
+  "skipped": 39,
   "cuda": true,
   "last_checkpoint": "checkpoints/structured3d/last.pt",
   "best_checkpoint": "checkpoints/structured3d/best.pt",
@@ -22,6 +22,7 @@
     "Structured3D_panorama_04.zip",
     "Structured3D_panorama_05.zip",
     "Structured3D_panorama_06.zip",
-    "Structured3D_panorama_07.zip"
+    "Structured3D_panorama_07.zip",
+    "Structured3D_panorama_08.zip"
   ]
 }
